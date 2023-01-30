@@ -1,6 +1,10 @@
 import EventEmitter from 'events';
 import { readFile } from 'fs';
 
+//this version utilizes asyncrhonous which means that the listeners can be registered after the the find function is called. Because the async
+//file read does not happen until the callstack is clear and the event cycle is run again we can add listeners after its invocation.
+//for the case of a syncronous version of this class we would have to actually add the listeners before the the invocation of the find() method
+
 class findRegex extends EventEmitter {
   regex: RegExp;
   files: string[];
